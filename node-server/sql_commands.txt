@@ -1,0 +1,8 @@
+CREATE TABLE Organization(org_id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, startDate varchar(255), endDate varchar(255), active boolean NOT NULL, PRIMARY KEY (org_id));
+
+CREATE TABLE Task(task_id int NOT NULL AUTO_INCREMENT, org_id int NOT NULL, title varchar(255) NOT NULL, startDate varchar(255), endDate varchar(255), product varchar(255), description varchar(255) NOT NULL, evaluation int NOT NULL, comments varchar(255), PRIMARY KEY (task_id), FOREIGN KEY (org_id) REFERENCES Organization(org_id));
+
+INSERT INTO Organization(name,startDate,endDate,active) VALUES ('Nokia','12/19','12/20','0');
+INSERT INTO Organization(name,startDate,endDate,active) VALUES ('Intrasoft','12/20',null,'1');
+
+INSERT INTO Task(org_id,title,startDate,endDate,product,description,evaluation,comments) VALUES ('1','Auto-Update Tool for Team Analytics with PowerBI','01/01/20','15/03/20','Nokia TAS','Develop automated tool for daily update of analytics in PowerBI cloud','10','Tool developed by making a connector in Excel that communicated with cloud and updated corresponding table.');

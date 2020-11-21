@@ -1,0 +1,69 @@
+.main {
+    margin: auto;
+    width: 50%;
+    padding: 10px 20px;
+    margin-top: 30px;
+    border: 1px solid #999999;
+    border-radius: 6px;
+}
+
+a {
+    text-decoration: none;
+    width: 30%;
+    color: black !important;
+}
+
+a:visited {
+    color: black !important;
+}
+
+a:active {
+    outline: none !important;
+}
+
+.welcome_header {
+    width: 50%;
+    margin:auto;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.list_item{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.item {
+    cursor: pointer;
+    font-size: 110%;
+}
+
+.item:hover {
+    color: #4267B2 !important;
+}
+
+.date_display {
+    font-style: italic;
+    font-size: 70%;
+    color: grey;
+    margin-left: 10px;
+}
+
+.update_button {
+    color: grey !important;
+}
+
+.update_button:hover {
+    color: #4267B2;
+}
+
+::ng-deep .mat-list .mat-list-item .mat-line{
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.delete_button {
+    display: inline-block;
+    position: absolute;
+    right: 2%;
+}

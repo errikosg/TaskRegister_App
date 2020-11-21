@@ -1,0 +1,4 @@
+localhost
+root
+m@rbella7
+taskregister

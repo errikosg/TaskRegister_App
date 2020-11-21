@@ -1,0 +1,62 @@
+<mat-dialog-actions class="top_actions">
+    <button mat-icon-button class="close_button" matTooltip="Close"
+            (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-dialog-actions>
+<h2 mat-dialog-title class="title">Update Task</h2>
+
+<mat-dialog-content class="content" [formGroup]="form">
+    <mat-form-field>
+        <input matInput
+            placeholder="Title"
+            formControlName="title">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="startPicker"
+            placeholder="Starting Date"
+            formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="endPicker"
+            placeholder="Ending date"
+            formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput
+            placeholder="Product"
+            formControlName="product">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput
+            formControlName="description"></textarea>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput type="number" min="0" max="10"
+            placeholder="Evaluation"
+            formControlName="evaluation">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <mat-label>Comments</mat-label>
+        <textarea matInput
+            formControlName="comments"></textarea>
+    </mat-form-field><br>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+    <button mat-raised-button color="primary" class="save_button" matTooltip="Save changes"
+            (click)="save()">
+        Save
+    </button>
+</mat-dialog-actions>

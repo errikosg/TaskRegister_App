@@ -1,0 +1,50 @@
+<h3 class="main_header">Task List for <span class="org_name">{{curr_org.name}}</span></h3>
+
+<button mat-raised-button color="primary" class="add_button" (click)="openAddTaskDialog()" matTooltip="Add new Task">
+    Add new Task
+</button>
+
+<div class="main">
+    <mat-list class="task_list">
+        <mat-list-item class="list_item" *ngFor="let task of tasklist; let i=index;"> 
+            <button mat-icon-button class="update_button" (click)="openUpdateTaskDialog(task)" matTooltip="Update Task info">
+                <mat-icon class="update_icon">open_in_new</mat-icon>
+            </button>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="task_title">
+                            {{task.title}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="task_details">
+                        <div matLine>
+                            <span class="detail_title">Product:</span>  <span class="test">{{task.product}}</span>
+                        </div>
+                        <div matLine>
+                            <span class="detail_title">Start Date:</span> <span class="test">{{task.startDate}}</span>
+                        </div>
+                        <div matLine>
+                            <span class="detail_title">End Date:</span> <span class="test">{{task.endDate}}</span>
+                        </div>
+                        <div matLine>
+                            <span class="detail_title">Description:</span> <span class="test">{{task.description}}</span>
+                        </div>
+                        <div matLine>
+                            <span class="detail_title">Comments:</span> <span class="test">{{task.comments}}</span>
+                        </div>
+                        <div matLine>
+                            <span class="detail_title">Evaluation:</span> <span [ngStyle]="{'color': getColor(task.evaluation)}" class="test">{{task.evaluation}}</span>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <span class="delete_button"><button mat-icon-button color="warn" matTooltip="Delete Task" (click)="deleteTask(task)">
+                <mat-icon>close</mat-icon>
+            </button></span>
+        </mat-list-item>
+    </mat-list>    
+</div>
+
+<button mat-stroked-button (click)="goBack()" class="back-button" matTooltip="Go back">Back</button>
+<button mat-stroked-button (click)="scrollTop()" class="top_button" matTooltip="Go to top">Top</button>

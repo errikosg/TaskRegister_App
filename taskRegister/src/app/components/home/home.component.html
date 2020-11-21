@@ -1,0 +1,27 @@
+<h2 class="welcome_header">Task Register</h2>
+
+<div class="main">
+    <h3 class="main_header">Organizations</h3>
+    <mat-list class="org_list">
+        <mat-list-item class="list_item" *ngFor="let org of orgs; let i=index; let lastItem=last;">
+            <div matLine>
+                <button mat-icon-button class="update_button" (click)="openUpdateOrgDialog(org)" matTooltip="Update Organization info">
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+                <a routerLink="/org/{{org.org_id}}">
+                    <span class="item">
+                        {{i+1}}. {{org.name}} <span class="date_display">{{org.startDate}} - {{org.endDate}}</span>
+                    </span>
+                </a>
+                <span class="delete_button"><button mat-icon-button color="warn" matTooltip="Delete Organization" (click)="deleteOrg(org)">
+                    <mat-icon>close</mat-icon>
+                </button></span>
+            </div>
+            <mat-divider *ngIf="!lastItem"></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    
+    <button mat-icon-button color="primary" class="add_button" (click)="openAddOrgDialog()" matTooltip="Add new Organization">
+        <mat-icon>add_box</mat-icon>
+    </button>
+</div>

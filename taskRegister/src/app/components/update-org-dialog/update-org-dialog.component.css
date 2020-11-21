@@ -1,0 +1,21 @@
+mat-form-field {
+    width: 60% !important;
+}
+
+.title{
+    width: 100%;
+    text-align: center !important;
+}
+
+.content {
+    text-align: center !important;
+}
+
+button {
+    margin: auto !important
+}
+
+.close_button {
+    bottom: 30px !important;
+    left: 50% !important;
+}

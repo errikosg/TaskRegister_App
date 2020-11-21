@@ -1,0 +1,38 @@
+<mat-dialog-actions class="top_actions">
+    <button mat-icon-button class="close_button" matTooltip="Close"
+            (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-dialog-actions>
+<h2 mat-dialog-title class="title">Add new Organization</h2>
+
+<mat-dialog-content class="content" [formGroup]="form">
+    <mat-form-field>
+        <input matInput
+            placeholder="Organization Name"
+            formControlName="name">
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="startPicker"
+            placeholder="Date of employment"
+            formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field><br>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="endPicker"
+            placeholder="Ending date in company"
+            formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field><br>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+    <button mat-raised-button color="primary" class="save_button" matTooltip="Save Organization"
+            (click)="save()">
+        Save
+    </button>
+</mat-dialog-actions>
