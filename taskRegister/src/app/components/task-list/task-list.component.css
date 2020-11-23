@@ -35,10 +35,13 @@
 
 .detail_title {
     color: #888888;
+    /* font-size: 110%; */
+    /* text-decoration: underline; */
+    font-weight:bold;
 }
 
 .test {
-    margin-left: 1%;
+    margin-left: 2%;
 }
 
 .eval {

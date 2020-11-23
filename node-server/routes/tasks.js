@@ -68,7 +68,7 @@ router.get("/tasks/by_org/:oid", function(req,res){
                 return buildResponse(res, 500, "Internal Server Error", null, connection);
             }
             else if(result.length === 0 || result === null) {
-                return buildResponse(res, 404, "Not Found", [], connection);
+                return buildResponse(res, 200, "OK", [], connection);
             }
             else{
                 return buildResponse(res, 200, "OK", result, connection);

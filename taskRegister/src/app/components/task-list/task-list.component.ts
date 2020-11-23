@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location, DatePipe } from '@angular/common';
 
-import {TaskList} from '../../mock/mock-tasklist';
 import { Task } from '../../models/task';
 import { Organization } from 'src/app/models/organization';
 import { TaskService } from 'src/app/services/task.service';
@@ -32,7 +31,6 @@ export class TaskListComponent implements OnInit {
       this.getCurrentOrg();
    }
 
-  //tasklist = TaskList;
   tasklist: Task[];
   curr_org: Organization;
   org_id = this.route.snapshot.paramMap.get('id');
@@ -110,12 +108,19 @@ export class TaskListComponent implements OnInit {
           console.log(new_task)
           this.taskService.addSingleTask(new_task, curr_org_id).subscribe(data =>{
             console.log(data)
-
-            //refresh and snackbar
-            this.getTaskList();
-            this._snackbar.open('Task added', null, {
-              duration: 2000
-            });
+            // handle response
+            if(data.code !== 200){
+              let sbar_error = 'Task not added: ' + data.status;
+              this._snackbar.open(sbar_error, null, {
+                duration: 2000
+              });
+            }
+            else{
+              this.getTaskList();                       //refresh
+              this._snackbar.open('Task added', null, {
+                duration: 2000
+              });
+            }
           })
         }
     });
@@ -150,12 +155,20 @@ export class TaskListComponent implements OnInit {
         console.log(task)
         this.taskService.updateTask(task).subscribe(data =>{
           console.log(data)
-
-          //refresh and snackbar
-          this.getTaskList();
-          this._snackbar.open('Task updated', null, {
-            duration: 2000
-          });
+          
+          // handle response
+          if(data.code !== 200){
+            let sbar_error = 'Task not updated: ' + data.status;
+            this._snackbar.open(sbar_error, null, {
+              duration: 2000
+            });
+          }
+          else{
+            this.getTaskList();                       //refresh
+            this._snackbar.open('Task updated', null, {
+              duration: 2000
+            });
+          }
         })
       })
   }

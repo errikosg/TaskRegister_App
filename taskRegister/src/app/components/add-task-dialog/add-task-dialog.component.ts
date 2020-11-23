@@ -21,13 +21,13 @@ export class AddTaskDialogComponent implements OnInit {
       this.org_name = name;
 
       this.form = fb.group({
-        title: ["", Validators.required],
-        startDate: ["", Validators.required],
-        endDate: [""],
-        product: ["", Validators.required],
-        description: ["", Validators.required],
-        evaluation: ["", Validators.required],
-        comments: [""]
+        title: ["", [Validators.required, Validators.maxLength(255)]],
+        startDate: ["", [Validators.required, Validators.maxLength(255)]],
+        endDate: ["", Validators.maxLength(255)],
+        product: ["", [Validators.required, Validators.maxLength(255)]],
+        description: ["", [Validators.required, Validators.maxLength(1000)]],
+        evaluation: ["", [Validators.required, Validators.min(0), Validators.max(10)]],
+        comments: ["", Validators.maxLength(255)]
     });
    }
 

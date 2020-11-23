@@ -54,12 +54,20 @@ export class HomeComponent implements OnInit {
                       endDate:this.datepipe.transform(result.endDate, 'MM/dd/yyyy')};
           this.orgService.addSingleOrganization(new_org).subscribe(data =>{
             console.log(data);
-
-            // refresh organization list
-            this.getOrgs();
-            this._snackbar.open('Organization added', null, {
-              duration: 2000
-            });
+            // handle response
+            if(data.code !== 200){
+              let sbar_error = 'Organization not added: ' + data.status;
+              this._snackbar.open(sbar_error, null, {
+                duration: 2000
+              });
+            }
+            else{
+              // refresh organization list
+              this.getOrgs();
+              this._snackbar.open('Organization added', null, {
+                duration: 2000
+              });
+            }
           })
         }
     });
@@ -90,12 +98,19 @@ export class HomeComponent implements OnInit {
           console.log(current_org)
           this.orgService.updateOrganization(current_org).subscribe(data=>{
             console.log(data);
-
-            // refresh organization list
-            this.getOrgs();
-            this._snackbar.open('Organization updated', null, {
-              duration: 2000
-            });
+            // handle response
+            if(data.code !== 200){
+              let sbar_error = 'Organization not updated: ' + data.status;
+              this._snackbar.open(sbar_error, null, {
+                duration: 2000
+              });
+            }
+            else{
+              this.getOrgs();
+              this._snackbar.open('Organization updated', null, {
+                duration: 2000
+              });
+            }
           })
         }
     });
@@ -103,13 +118,7 @@ export class HomeComponent implements OnInit {
 
   deleteOrg(org: Organization): void{
     console.log(org)
-    // this.orgService.deleteOrganization(org.org_id).subscribe(data =>{
-    //   console.log(data);  
-
-    //   // refresh organization list
-    //   this.getOrgs();
-    // })
-
+    
     // open dialog to make sure of the deletion
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -122,9 +131,14 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         console.log(result)
-        // if(result){
-          
-        // }
+        if(result){
+          this.orgService.deleteOrganization(org.org_id).subscribe(data =>{
+            console.log(data);  
+
+            // refresh organization list
+            this.getOrgs();
+          })
+        }
     });
   }
 }

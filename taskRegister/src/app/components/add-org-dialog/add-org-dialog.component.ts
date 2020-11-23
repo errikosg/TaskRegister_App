@@ -16,9 +16,9 @@ export class AddOrgDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AddOrgDialogComponent>
   ) { 
     this.form = fb.group({
-      name: ["", Validators.required],
-      startDate: ["", Validators.required],
-      endDate: [""]
+      name: ["", [Validators.required, Validators.maxLength(255)]],
+      startDate: ["", [Validators.required, Validators.maxLength(255)]],
+      endDate: ["", Validators.maxLength(255)]
     });
    }
 

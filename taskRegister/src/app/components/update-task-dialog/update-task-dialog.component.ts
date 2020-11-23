@@ -25,13 +25,13 @@ export class UpdateTaskDialogComponent implements OnInit {
       }
     
       this.form = fb.group({
-      title: [title, Validators.required],
-      startDate: [sDate, Validators.required],
-      endDate: [eDate],
-      product: [product, Validators.required],
-      description: [description, Validators.required],
-      evaluation: [evaluation, Validators.required],
-      comments: [comments]
+      title: [title, [Validators.required, Validators.maxLength(255)]],
+      startDate: [sDate, [Validators.required, Validators.maxLength(255)]],
+      endDate: [eDate, Validators.maxLength(255)],
+      product: [product, [Validators.required, Validators.maxLength(255)]],
+      description: [description, [Validators.required, Validators.maxLength(1000)]],
+      evaluation: [evaluation, [Validators.required, Validators.min(0), Validators.max(10)]],
+      comments: [comments, Validators.maxLength(255)]
   });
    }
 

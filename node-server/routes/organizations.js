@@ -83,22 +83,43 @@ router.delete("/orgs/:oid", function(req,res){
         if (err) {
           return buildResponse(res, 500, "Error in connection to database", null, connection);
         }
-
         const requestedId = req.params.oid;
-        const query = "DELETE FROM Organization WHERE org_id=?";
+
+        // firstly delete all the tasks of this org
+        const query = "DELETE FROM Task WHERE org_id=?"
         connection.query(query, [requestedId], function(err,result){
             if(err){
                 return buildResponse(res, 500, "Internal Server Error", null, connection);
             }
-            else if(result.affectedRows === 0 || result === null) {
-                return buildResponse(res, 404, "Not Found", null, connection);
-            }
             else{
-                return buildResponse(res, 200, "OK", null, connection);
+                // now delete the org
+                const query2 = "DELETE FROM Organization WHERE org_id=?";
+                connection.query(query2, [requestedId], function(err2,result2){
+                    if(err2){
+                        return buildResponse(res, 500, "Internal Server Error", null, connection);
+                    }
+                    else if(result2.affectedRows === 0 || result2 === null) {
+                        return buildResponse(res, 404, "Not Found", null, connection);
+                    }
+                    else{
+                        return buildResponse(res, 200, "OK", null, connection);
+                    }
+                })
             }
-        });
-        // connection.on('error', function(err) {
-        //       return buildResponse(res, 500, "Error in connection to database", null, connection);
+        })
+
+        // // now delete the org
+        // const query = "DELETE FROM Organization WHERE org_id=?";
+        // connection.query(query, [requestedId], function(err,result){
+        //     if(err){
+        //         return buildResponse(res, 500, "Internal Server Error", null, connection);
+        //     }
+        //     else if(result.affectedRows === 0 || result === null) {
+        //         return buildResponse(res, 404, "Not Found", null, connection);
+        //     }
+        //     else{
+        //         return buildResponse(res, 200, "OK", null, connection);
+        //     }
         // });
     });
 });

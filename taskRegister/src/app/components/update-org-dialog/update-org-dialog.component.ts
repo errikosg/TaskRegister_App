@@ -27,9 +27,9 @@ export class UpdateOrgDialogComponent implements OnInit {
       }
 
       this.form = fb.group({
-        name: [name, Validators.required],
-        startDate: [sDate, Validators.required],
-        endDate: [eDate]
+        name: [name, [Validators.required, Validators.maxLength(255)]],
+        startDate: [sDate, [Validators.required, Validators.maxLength(255)]],
+        endDate: [eDate, Validators.maxLength(255)]
       });
    }
 
